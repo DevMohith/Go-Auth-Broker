@@ -30,9 +30,10 @@ func AuthMiddleware(next http.HandlerFunc) http.HandlerFunc {
 			http.Error(w, "Invalid or token is expired", http.StatusUnauthorized)
 		}
 		// step5 print token is valid
-		fmt.printf("Token is Valid! User: %s (ID: %s)\n", claims.Username, claims.UserID)
+		fmt.Printf("Token is Valid! User: %s (ID: %s)\n", claims.Username, claims.UserID)
 
 		// ste6 allow the endpoint to executre
+		next(w, r)
 	}
 
 }
